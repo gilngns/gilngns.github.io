@@ -257,6 +257,90 @@
       border-color: #ff2e9a;
       background-color: #fff;
     }
+    .timeline {
+      position: relative;
+      border-left: 3px solid rgba(160, 64, 255, 0.6);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -12px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #a040ff, #6a0dad);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(160, 64, 255, 0.8);
+      animation: pulse 2s infinite;
+    }
+    
+    .timeline-text {
+      padding-left: 20px;
+    }
+    
+    .timeline-text h5 {
+      color: #d5a3ff;
+      font-weight: 600;
+    }
+    
+    .timeline-text small {
+      display: block;
+      color: #bbb;
+      margin-bottom: 5px;
+    }
+    
+    .timeline-text p {
+      color: #eee;
+      margin: 0;
+    }
+    
+    /* Animasi glowing */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px rgba(160,64,255,0.5); }
+      50% { box-shadow: 0 0 20px rgba(160,64,255,0.9); }
+      100% { box-shadow: 0 0 5px rgba(160,64,255,0.5); }
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .timeline {
+        padding-left: 40px;
+      }
+      .timeline-dot {
+        left: -10px;
+        width: 16px;
+        height: 16px;
+      }
+      .timeline-text h5 {
+        font-size: 1rem;
+      }
+      .timeline-text p {
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .timeline {
+        padding-left: 30px;
+      }
+      .timeline-dot {
+        left: -8px;
+        width: 14px;
+        height: 14px;
+      }
+      .timeline-text h5 {
+        font-size: 0.95rem;
+      }
+      .timeline-text p {
+        font-size: 0.85rem;
+      }
+    }   
+    
   </style>
   <body>
     <!-- Navbar -->
@@ -380,6 +464,51 @@
         ></div>
       </div>
     </section>
+
+    <!-- Timeline -->
+    <section id="organization" class="container py-5">
+      <h2 
+        class="text-center text-white mb-5 rajdhani-bold" 
+        data-aos="fade-up" 
+        data-aos-duration="1000">
+        Education & Organizational Experience
+      </h2>
+    
+      <div class="timeline">
+        
+        <!-- Education 1 -->
+        <div class="timeline-item" data-aos="fade-right" data-aos-duration="1000">
+          <div class="timeline-dot"></div>
+          <div class="timeline-text">
+            <h5 class="rajdhani-bold">Universitas Komputer Indonesia</h5>
+            <small class="oxygen-regular">Bachelor of Information Systems — September 2023 - Present</small>
+          </div>
+        </div>
+    
+        <!-- Education 2 -->
+        <div class="timeline-item" data-aos="fade-left" data-aos-duration="1000">
+          <div class="timeline-dot"></div>
+          <div class="timeline-text">
+            <h5 class="rajdhani-bold">SMKN 1 Tanjungpandan</h5>
+            <small class="oxygen-regular">Vocational High School Graduate in Software Engineering — July 2020 - May 2023</small>
+          </div>
+        </div>
+    
+        <!-- Codelabs -->
+        <div class="timeline-item" data-aos="fade-right" data-aos-duration="1000">
+          <div class="timeline-dot"></div>
+          <div class="timeline-text">
+            <h5 class="rajdhani-bold">Member of Codelabs</h5>
+            <small class="oxygen-regular">Universitas Komputer Indonesia — February 2025 - Present</small>
+            <p class="oxygen-regular">
+              Actively contributing in collaborative coding sessions and community-driven projects to enhance technical and teamwork skills.
+            </p>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+    
 
     <!-- My Projects Section -->
     <section id="projects" class="container py-5">
