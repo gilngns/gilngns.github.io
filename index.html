@@ -22,6 +22,13 @@
         </div>
     </div>
 
+    <!-- 3D Grid Background -->
+    <div class="grid-bg"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
     <!-- Scroll Progress Line -->
     <div class="scroll-progress"></div>
 
@@ -48,8 +55,8 @@
     <section class="hero" id="home">
         <div class="container">
             <h1 class="hero-title reveal-text">
-                Fullstack<br>
-                <span class="outline-text">Web Developer</span>
+                <span class="word">Fullstack</span><br>
+                <span class="word gradient-text">Web Developer</span>
             </h1>
             <div class="hero-bottom">
                 <div class="hero-desc">
@@ -73,9 +80,9 @@
     <!-- Infinite Marquee -->
     <div class="marquee-wrapper">
         <div class="marquee">
-            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
-            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
-            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL  ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL  ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL  ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
         </div>
     </div>
 
@@ -207,14 +214,22 @@
             setTimeout(() => {
                 document.querySelector('.preloader').classList.add('fade-out');
                 document.body.classList.remove('no-scroll');
-                document.querySelector('.hero-title').classList.add('animate-reveal');
+                
+                // Staggered Reveal
+                setTimeout(() => {
+                    document.querySelector('.nav').classList.add('animate-nav');
+                    document.querySelector('.hero-title').classList.add('animate-reveal');
+                    const heroBottom = document.querySelector('.hero-bottom');
+                    if(heroBottom) heroBottom.classList.add('animate-reveal');
+                }, 400);
             }, 1500); // 1.5 second cinematic delay
         });
 
-        // 2. Custom Cursor
+        // 2. Custom Cursor (Instant zero-lag)
         const cursor = document.querySelector('.cursor-follower');
+        
         document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
         });
 
         // Hover Effect on Links
@@ -269,6 +284,46 @@
             el.classList.add('reveal-element');
             observer.observe(el);
         });
+
+        // 6. Spotlight Cards
+        document.querySelectorAll('.exp-item').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // 7. 3D Hover Tilt Image
+        const aboutContainer = document.querySelector('.about-image');
+        const aboutImg = document.querySelector('.about-image img');
+        
+        if (aboutContainer && aboutImg) {
+            aboutContainer.addEventListener('mousemove', (e) => {
+                const rect = aboutContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -15; 
+                const rotateY = ((x - centerX) / centerX) * 15;
+                
+                aboutImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+            
+            aboutContainer.addEventListener('mouseleave', () => {
+                aboutImg.style.transform = `rotateX(0) rotateY(0) scale(1)`;
+                aboutImg.style.transition = `transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)`;
+            });
+            
+            aboutContainer.addEventListener('mouseenter', () => {
+                aboutImg.style.transition = `none`;
+            });
+        }
 
     </script>
 </body>
