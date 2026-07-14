@@ -65,7 +65,7 @@
                 
                 <!-- Magnetic Button -->
                 <div class="hero-cta">
-                    <a href="#" class="magnetic-btn" id="resumeBtn">
+                    <a href="assets/Gilang%20Nanda%20Saputra_Backend%20Engineer_CV.pdf" download="Gilang_Nanda_Saputra_CV.pdf" class="magnetic-btn" id="resumeBtn">
                         <span class="magnetic-text">Download Resume</span>
                     </a>
                 </div>
@@ -261,6 +261,42 @@
                 text.style.transform = `translate(0px, 0px)`;
             });
         });
+
+        // Button Click Animation
+        const resumeBtn = document.getElementById('resumeBtn');
+        if (resumeBtn) {
+            resumeBtn.addEventListener('click', (e) => {
+                if(resumeBtn.classList.contains('is-downloading')) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                resumeBtn.classList.add('is-downloading');
+                const text = resumeBtn.querySelector('.magnetic-text');
+                const originalText = text.textContent;
+                text.textContent = "Downloading...";
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('btn-ripple');
+                const rect = resumeBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                resumeBtn.appendChild(ripple);
+                
+                setTimeout(() => {
+                    text.textContent = "Downloaded!";
+                    resumeBtn.classList.replace('is-downloading', 'download-success');
+                    
+                    setTimeout(() => {
+                        text.textContent = originalText;
+                        resumeBtn.classList.remove('download-success');
+                        ripple.remove();
+                    }, 3000);
+                }, 1000); // Fake delay for animation
+            });
+        }
 
         // 4. Scroll Progress Line
         const progressBar = document.querySelector('.scroll-progress');
