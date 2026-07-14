@@ -1,684 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LangDev | Portofolio</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
-    @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
-    .oxygen-regular {
-      font-family: "Oxygen", sans-serif;
-      font-weight: 300;
-      font-style: normal;
-    }
-    .rajdhani-bold {
-      font-family: "Rajdhani", sans-serif;
-      font-weight: 700;
-      font-style: normal;
-    }
-    body {
-      background: linear-gradient(
-        135deg,
-        #2e0265,
-        #0b0213
-      ); /* Gradasi gelap ungu */
-      color: #fff;
-      font-family: "Arial", sans-serif;
-      margin: 0;
-      position: relative;
-    }
-    .navbar {
-      background-color: transparent;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 15px 30px;
-      margin: 0;
-    }
-    .navbar-dark .navbar-nav .nav-link {
-      color: #fff;
-      margin: 0 10px; /* Menyesuaikan jarak untuk tampilan kecil */
-      font-size: 1rem; /* Ukuran font lebih kecil untuk tampilan kecil */
-    }
-    .hero-section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center; /* Menyejajarkan secara horizontal */
-      padding: 0 15px; /* Padding yang lebih responsif */
-      position: relative;
-      z-index: 1; /* Menyimpan elemen di atas dekorasi */
-    }
-    .custom-card {
-      transform: translate(0, 0);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      max-width: 100%;
-      margin: 0;
-    }
-    .double-card {
-      background-color: #1b113a;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      max-width: 95%; /* Maksimal lebar yang responsif */
-      margin: 0;
-    }
-    .custom-card img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-    .btn-primary {
-      background-color: #ff2e9a;
-      border-color: #ff2e9a;
-    }
-    .btn-outline-light {
-      border-color: #8f00ff;
-      color: #8f00ff;
-    }
-    .hvr-underline-from-center::before {
-      background: #fff;
-    }
-    .hvr-underline-from-center:hover::before {
-      background: #fff;
-    }
-    /* Elemen dekoratif di belakang */
-    .decorative-background {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0; /* Menempatkan di belakang semua elemen */
-      overflow: hidden; /* Pastikan elemen tidak keluar dari container */
-    }
-    .decorative-element {
-      position: absolute;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-    }
-    .decorative-element-1 {
-      width: 150px;
-      height: 150px;
-      top: 10%;
-      left: 10%;
-    }
-    .decorative-element-2 {
-      width: 200px;
-      height: 200px;
-      top: 15%;
-      left: 90%;
-    }
-    .decorative-element-3 {
-      width: 400px;
-      height: 400px;
-      top: 50%;
-      left: 30%;
-    }
-
-    #about {
-      background-color: #1b113a;
-      border-radius: 10px;
-      padding: 40px 20px;
-      position: relative;
-    }
-
-    #about .display-4 {
-      color: #ff2e9a;
-    }
-
-    #about .lead {
-      color: #d3a2f1;
-    }
-
-    #about p {
-      color: #e0e0e0;
-    }
-
-    .decorative-background {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .decorative-element {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .decorative-element-1 {
-      width: 100px;
-      height: 100px;
-      top: 10%;
-      left: 10%;
-    }
-
-    .decorative-element-2 {
-      width: 150px;
-      height: 150px;
-      top: 70%;
-      right: 10%;
-    }
-    .decorative-element-3 {
-      width: 300px;
-      height: 300px;
-      top: 30%;
-      right: 10%;
-    }
-    .project-card {
-      background-color: #1b113a;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-img-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .card-img-top {
-      transition: transform 0.5s ease;
-    }
-
-    .card-img-wrapper:hover .card-img-top {
-      transform: scale(1.1);
-    }
-
-    .card-img-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .card-img-wrapper:hover .card-img-overlay {
-      opacity: 1;
-    }
-
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    .btn-outline-light {
-      margin-top: 10px;
-      border-color: #ff2e9a;
-      color: #ff2e9a;
-    }
-    #contact {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-icons a img {
-      border-radius: 50%;
-      border: 2px solid #fff;
-      padding: 5px;
-      background-color: #ff2e9a;
-    }
-
-    .social-icons a img:hover {
-      transform: scale(1.2);
-      border-color: #ff2e9a;
-      background-color: #fff;
-    }
-    .timeline {
-      position: relative;
-      border-left: 3px solid rgba(160, 64, 255, 0.6);
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilang Nanda Saputra | Portfolio</title>
     
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    .timeline-dot {
-      position: absolute;
-      left: -12px;
-      top: 5px;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, #a040ff, #6a0dad);
-      border-radius: 50%;
-      box-shadow: 0 0 15px rgba(160, 64, 255, 0.8);
-      animation: pulse 2s infinite;
-    }
-    
-    .timeline-text {
-      padding-left: 20px;
-    }
-    
-    .timeline-text h5 {
-      color: #d5a3ff;
-      font-weight: 600;
-    }
-    
-    .timeline-text small {
-      display: block;
-      color: #bbb;
-      margin-bottom: 5px;
-    }
-    
-    .timeline-text p {
-      color: #eee;
-      margin: 0;
-    }
-    
-    /* Animasi glowing */
-    @keyframes pulse {
-      0% { box-shadow: 0 0 5px rgba(160,64,255,0.5); }
-      50% { box-shadow: 0 0 20px rgba(160,64,255,0.9); }
-      100% { box-shadow: 0 0 5px rgba(160,64,255,0.5); }
-    }
-    
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .timeline {
-        padding-left: 40px;
-      }
-      .timeline-dot {
-        left: -10px;
-        width: 16px;
-        height: 16px;
-      }
-      .timeline-text h5 {
-        font-size: 1rem;
-      }
-      .timeline-text p {
-        font-size: 0.9rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .timeline {
-        padding-left: 30px;
-      }
-      .timeline-dot {
-        left: -8px;
-        width: 14px;
-        height: 14px;
-      }
-      .timeline-text h5 {
-        font-size: 0.95rem;
-      }
-      .timeline-text p {
-        font-size: 0.85rem;
-      }
-    }   
-    
-  </style>
-  <body>
-    <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-dark"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
-      <div class="container">
-        <a class="navbar-brand rajdhani-bold fs-1" href="#"
-          >Lang<span style="color: red">Dev</span></a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto oxygen-regular">
-            <li class="nav-item hvr-underline-from-center">
-              <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item hvr-underline-from-center">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item hvr-underline-from-center">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item hvr-underline-from-center">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-text-wrapper">
+            <div class="preloader-text">GILANG.</div>
         </div>
-      </div>
+    </div>
+
+    <!-- Scroll Progress Line -->
+    <div class="scroll-progress"></div>
+
+    <!-- Ambient Orbs -->
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Custom Cursor Follower -->
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">Gilang Nanda Saputra</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="container-fluid hero-section" id="home">
-      <div class="row align-items-center">
-        <div class="col-lg-6 text-center text-lg-start">
-          <h1
-            class="display-4 fw-bold"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            Empowering Digital Solutions
-            <span class="text-warning">One Project</span> at a Time
-          </h1>
-          <p class="lead mt-3" data-aos="fade-up" data-aos-duration="1000">
-            As a freelance web developer, I specialize in crafting dynamic and
-            user-friendly web solutions tailored to your needs. My goal is to
-            bring your digital vision to life with creativity and precision.
-          </p>
-          <div class="mt-4">
-            <a
-              href="#projects"
-              class="btn btn-primary btn-lg me-3"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              >View My Work</a
-            >
-          </div>
-        </div>
-
-        <div
-          class="col-lg-6 text-center mt-3"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          <div class="double-card hvr-grow-rotate">
-            <div class="custom-card">
-              <img
-                src="projects/pp2.jpg"
-                class="img-fluid"
-                alt="Portfolio Image"
-              />
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="hero-title reveal-text">
+                Fullstack<br>
+                <span class="outline-text">Web Developer</span>
+            </h1>
+            <div class="hero-bottom">
+                <div class="hero-desc">
+                    <p>Information Systems Student specializing in robust web applications, GCP, and Laravel.</p>
+                </div>
+                
+                <!-- Magnetic Button -->
+                <div class="hero-cta">
+                    <a href="#" class="magnetic-btn" id="resumeBtn">
+                        <span class="magnetic-text">Download Resume</span>
+                    </a>
+                </div>
+                
+                <div class="hero-scroll">
+                    <span>Scroll to explore</span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Infinite Marquee -->
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+            <span>✦ LARAVEL ✦ GCP ✦ MYSQL ✦ UI/UX ✦ JAVASCRIPT ✦ FULLSTACK DEVELOPMENT </span>
+        </div>
     </div>
 
-    <!-- About Me Section -->
-    <section
-      id="about"
-      class="container py-5 position-relative"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
-      <div class="row text-center">
-        <div class="col-md-8 mx-auto">
-          <h2 class="display-4 fw-bold oxygen-regular">About Me</h2>
-          <p class="lead mt-3 oxygen-regular">
-            Hi, I'm Gilang, a passionate freelance web developer with a focus on
-            creating innovative and engaging web solutions. I am also a student
-            of Information Systems at Universitas Komputer Indonesia, where I am
-            honing my skills in the latest technologies and best practices.
-          </p>
-          <p class="oxygen-regular">
-            With experience in a range of web technologies and a keen eye for
-            design, I am dedicated to delivering high-quality projects that meet
-            my clients' needs. Whether it's building a new website or improving
-            an existing one, I approach every project with creativity and
-            attention to detail.
-          </p>
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <h2 class="section-title">01 / About</h2>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="assets/pp.jpg" alt="Gilang Nanda Saputra">
+                </div>
+                <div class="about-text">
+                    <p class="large-text">
+                        I am Gilang, an Information Systems student at Universitas Komputer Indonesia with a deep passion for software engineering.
+                    </p>
+                    <p>
+                        From building complete Dealer Management Systems to participating in national innovation festivals, my journey is driven by a desire to craft scalable, high-performance digital solutions. I thrive in challenging environments and constantly seek to elevate user experiences through code.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Decorative Elements -->
-      <div class="decorative-background position-absolute">
-        <div
-          class="decorative-element decorative-element-1"
-          data-aos="fade-up"
-          data-aos-duration="2000"
-        ></div>
-      </div>
     </section>
 
-    <!-- Timeline -->
-    <section id="organization" class="container py-5">
-      <h2 
-        class="text-center text-white mb-5 rajdhani-bold" 
-        data-aos="fade-up" 
-        data-aos-duration="1000">
-        Education & Organizational Experience
-      </h2>
-    
-      <div class="timeline">
-        
-        <!-- Education 1 -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-duration="1000">
-          <div class="timeline-dot"></div>
-          <div class="timeline-text">
-            <h5 class="rajdhani-bold">Universitas Komputer Indonesia</h5>
-            <small class="oxygen-regular">Bachelor of Information Systems — September 2023 - Present</small>
-          </div>
-        </div>
-    
-        <!-- Education 2 -->
-        <div class="timeline-item" data-aos="fade-left" data-aos-duration="1000">
-          <div class="timeline-dot"></div>
-          <div class="timeline-text">
-            <h5 class="rajdhani-bold">SMKN 1 Tanjungpandan</h5>
-            <small class="oxygen-regular">Vocational High School Graduate in Software Engineering — July 2020 - May 2023</small>
-          </div>
-        </div>
-    
-        <!-- Codelabs -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-duration="1000">
-          <div class="timeline-dot"></div>
-          <div class="timeline-text">
-            <h5 class="rajdhani-bold">Member of Codelabs</h5>
-            <small class="oxygen-regular">Universitas Komputer Indonesia — February 2025 - Present</small>
-            <p class="oxygen-regular">
-              Actively contributing in collaborative coding sessions and community-driven projects to enhance technical and teamwork skills.
-            </p>
-          </div>
-        </div>
-    
-      </div>
-    </section>
-    
+    <!-- Experience Section -->
+    <section class="experience section-padding" id="experience">
+        <div class="container">
+            <h2 class="section-title">02 / Experience</h2>
+            
+            <div class="exp-list">
+                <!-- Exp 1 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>Mercedes-Benz PT Citrakarya Pranata</h3>
+                        <span class="exp-date">Apr 2026 - Jul 2026</span>
+                    </div>
+                    <div class="exp-role">Fullstack Web Developer</div>
+                    <p class="exp-desc">
+                        Developed PICATINNY, an end-to-end Vehicle Dealer Management System. Digitalized dealership operations covering service management, spare parts inventory, cashier transactions, and management reporting dashboards.
+                    </p>
+                </div>
 
-    <!-- My Projects Section -->
-    <section id="projects" class="container py-5">
-      <div class="row">
-        <!-- Project Card 1 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
-          <div class="card project-card hvr-grow mt-3">
-            <div class="card-img-wrapper">
-              <img
-                src="https://bajo.jumbomark.com/labels/DID2019073790"
-                class="card-img-top img-fluid"
-                alt="Project 1"
-              />
-              <div class="card-img-overlay">
-                <h5 class="card-title">Lempak Company Profile</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <a
-                href="https://lempakbelitong.github.io/"
-                class="btn btn-outline-light w-100"
-                >Visit Project</a
-              >
-            </div>
-          </div>
-        </div>
+                <!-- Exp 2 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>PT. MARIKU AIC INDONESIA - KARIR JEPANG</h3>
+                        <span class="exp-date">Jan 2026 - Mar 2026</span>
+                    </div>
+                    <div class="exp-role">Fullstack Web Developer</div>
+                    <p class="exp-desc">
+                        Built web solutions integrating Google Cloud Platform (GCP) and Laravel to streamline career matching processes.
+                    </p>
+                </div>
 
-        <!-- Project Card 2 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
-          <div class="card project-card hvr-grow mt-3">
-            <div class="card-img-wrapper">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Lambang_Kabupaten_Bandung%2C_Jawa_Barat%2C_Indonesia.svg"
-                class="card-img-top img-fluid"
-                alt="Project 2"
-              />
-              <div class="card-img-overlay">
-                <h5 class="card-title">Siranda Pacira</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <a
-                href="https://sirandapacira.my.id"
-                class="btn btn-outline-light w-100"
-                >Visit Project</a
-              >
-            </div>
-          </div>
-        </div>
+                <!-- Exp 3 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>PT. Kurniawan Indonesia Group</h3>
+                        <span class="exp-date">Jul 2025 - Sep 2025</span>
+                    </div>
+                    <div class="exp-role">Web Developer</div>
+                    <p class="exp-desc">
+                        Developed robust web platforms using Laravel and optimized technical SEO utilizing Google Search Console.
+                    </p>
+                </div>
 
-        <!-- Project Card 3 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
-          <div class="card project-card hvr-grow mt-3">
-            <div class="card-img-wrapper">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Lambang_Kabupaten_Bandung%2C_Jawa_Barat%2C_Indonesia.svg"
-                class="card-img-top img-fluid"
-                alt="Project 3"
-              />
-              <div class="card-img-overlay">
-                <h5 class="card-title">SIPPEDAS Cisangkuy</h5>
-              </div>
+                <!-- Exp 4 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>Permata Bumi Pertiwi</h3>
+                        <span class="exp-date">May 2025 - Aug 2025</span>
+                    </div>
+                    <div class="exp-role">Web Developer</div>
+                    <p class="exp-desc">
+                        Engineered data-driven web applications leveraging MySQL databases and Google Search Console insights.
+                    </p>
+                </div>
+
+                <!-- Exp 5 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>UNIKOM CodeLabs</h3>
+                        <span class="exp-date">Feb 2025 - Present</span>
+                    </div>
+                    <div class="exp-role">Back End Developer & Member</div>
+                    <p class="exp-desc">
+                        Collaborated on backend architectures and community-driven projects.
+                    </p>
+                </div>
+
+                <!-- Exp 6 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>FIKSI (Pusat Prestasi Nasional)</h3>
+                        <span class="exp-date">Jul 2021 - Okt 2021</span>
+                    </div>
+                    <div class="exp-role">Finalist & Android Developer</div>
+                    <p class="exp-desc">
+                        Developed "AYBER" using Sketchware, an Android-based visual programming platform. Designed application logic and tested functionality to ensure seamless execution.
+                    </p>
+                </div>
             </div>
-            <div class="card-body">
-              <a
-                href="https://sipedascisangkuy.my.id"
-                class="btn btn-outline-light w-100"
-                >Visit Project</a
-              >
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <section
-      id="contact"
-      class="py-5"
-      style="background-color: #1b113a; color: #fff; border-radius: 10px"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
-      <div class="container text-center">
-        <h2
-          class="mb-4"
-          style="font-size: 2.5rem; font-weight: 700; color: #ff2e9a"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          Contact
-        </h2>
-        <p
-          class="mb-3"
-          style="font-size: 1.1rem"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          Feel free to reach out to me through email or follow me on social
-          media!
-        </p>
-
-        <p
-          style="font-size: 1.1rem"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          Email:
-          <a
-            href="mailto:nsgilang10@gmail.com"
-            style="color: #ff2e9a; text-decoration: none"
-            >nsgilang10@gmail.com</a
-          >
-        </p>
-
-        <div
-          class="social-icons mt-4"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          <a
-            href="https://www.linkedin.com/in/gilang-nanda-saputra-6b63a2292/"
-            target="_blank"
-            style="margin: 0 10px; display: inline-block"
-          >
-            <i
-              class="fa fa-linkedin"
-              aria-hidden="true"
-              width="40"
-              style="transition: transform 0.3s ease"
-            ></i>
-          </a>
-          <a
-            href="https://www.instagram.com/gilngns/"
-            target="_blank"
-            style="margin: 0 10px; display: inline-block"
-          >
-            <i
-              class="fa fa-instagram"
-              aria-hidden="true"
-              width="40"
-              style="transition: transform 0.3s ease"
-            ></i>
-          </a>
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <h2 class="section-title">03 / Contact</h2>
+            <div class="contact-content">
+                <h3 class="contact-cta">Let's build something<br>extraordinary.</h3>
+                
+                <!-- Another Magnetic Button -->
+                <a href="mailto:nsgilang10@gmail.com" class="magnetic-btn email-btn">
+                    <span class="magnetic-text">nsgilang10@gmail.com</span>
+                </a>
+                
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/gilang-nanda-saputra-6b63a2292/" target="_blank">LinkedIn</a>
+                    <a href="https://www.instagram.com/gilngns/" target="_blank">Instagram</a>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Elemen dekoratif di belakang -->
-    <div class="decorative-background">
-      <div
-        class="decorative-element decorative-element-1"
-        data-aos="fade-up"
-        data-aos-duration="3000"
-      ></div>
-      <div
-        class="decorative-element decorative-element-2"
-        data-aos="fade-up"
-        data-aos-duration="3000"
-      ></div>
-      <div
-        class="decorative-element decorative-element-3"
-        data-aos="fade-up"
-        data-aos-duration="3000"
-      ></div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- JavaScript for WOW Interactions -->
     <script>
-      AOS.init(); // Inisialisasi AOS
+        // 1. Cinematic Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.preloader').classList.add('fade-out');
+                document.body.classList.remove('no-scroll');
+                document.querySelector('.hero-title').classList.add('animate-reveal');
+            }, 1500); // 1.5 second cinematic delay
+        });
+
+        // 2. Custom Cursor
+        const cursor = document.querySelector('.cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+        });
+
+        // Hover Effect on Links
+        const interactiveElements = document.querySelectorAll('a, .magnetic-btn');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // 3. Magnetic Button Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            const text = btn.querySelector('.magnetic-text');
+            
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                // Move button slightly
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                // Move text slightly more for parallax effect
+                text.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                // Reset with transition
+                btn.style.transform = `translate(0px, 0px)`;
+                text.style.transform = `translate(0px, 0px)`;
+            });
+        });
+
+        // 4. Scroll Progress Line
+        const progressBar = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const totalScroll = document.documentElement.scrollTop;
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scroll = `${totalScroll / windowHeight * 100}%`;
+            progressBar.style.width = scroll;
+        });
+
+        // 5. Smooth Scroll & Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-title, .exp-item, .about-text').forEach(el => {
+            el.classList.add('reveal-element');
+            observer.observe(el);
+        });
+
     </script>
-  </body>
+</body>
 </html>
